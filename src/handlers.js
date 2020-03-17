@@ -15,21 +15,31 @@ function toogleVim(checkbox, editor) {
 function renderPreview(previewFrame, editor) {
   // use the access code from storage first
   let accessCode = sessionStorage["accessCode"];
-  if (!accessCode) accessCode = prompt("Access code (will be saved, probably for a while):");
+  // only ask if storage is empty
+  if (accessCode === undefined)
+    accessCode = prompt("Access code (will be saved, probably for a while):");
 
   let preview = previewFrame.contentDocument;
 
   let reqBody = {
     docId: getDocId(),
-    markdown: editor.getValue(),
-    accessCode: accessCode
+    markdown: editor.getValue()
   };
+  if (accessCode !== "")
+    // only send the access code if it's not empty
+    reqBody.accessCode = accessCode;
+
   fetch(process.env.KARASU_SERVER + "/api/preview", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(reqBody)
   })
-    .then(res => res.text())
+    .then(res => {
+      if (!res.ok) {
+        sessionStorage.removeItem("accessCode");
+      }
+      return res.text();
+    })
     .then(html => {
       preview.open();
       preview.write(html);

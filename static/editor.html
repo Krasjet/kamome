@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>kamome</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <meta name="referrer" content="no-referrer" />
+    <link href="/styles/reset.css" rel="stylesheet" />
+    <link href="/fonts/fonts.css" rel="stylesheet" />
+    <link href="/styles/main.css" rel="stylesheet" />
+  </head>
+  <body>
+    <main>
+      <div id="menu">
+        <div id="menu-buttons">
+          <button id="menu-render">Render</button>
+          <button id="menu-save">Save</button>
+          <div id="menu-vim" title="For myself. Use it if you know vim.">
+            <input type="checkbox" id="toggle-vim" />
+            <label for="toggle-vim">vim</label>
+          </div>
+        </div>
+        <a href="/" id="menu-help">help</a>
+      </div>
+      <textarea id="editor">Loading...</textarea>
+      <div id="preview">
+        <iframe id="preview-frame"> </iframe>
+      </div>
+    </main>
+  </body>
+  <script src="/scripts/main.js"></script>
+</html>

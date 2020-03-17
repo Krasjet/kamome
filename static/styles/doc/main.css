@@ -1,0 +1,384 @@
+html {
+  font-size: 2.4vw;
+  height: 100%;
+  font-family: garibaldi, palatino, serif;
+}
+
+@media all and (min-width: 960px) {
+  html {
+    font-size: 23px;
+  }
+}
+
+@media all and (max-width: 715px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+::selection {
+  background-color: #c1feae;
+}
+
+body {
+  background-color: #f9fffa;
+  color: #222;
+  font-size: 1rem;
+  max-width: 32rem;
+  margin: auto;
+  padding: 2.5em 2.25em;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+}
+
+@media all and (max-width: 460px) {
+  body {
+    max-width: 31rem;
+    padding: 2.5em 1.25em;
+  }
+}
+
+.author {
+  margin: -0.9rem 0 0.45rem 0;
+  text-align: right;
+}
+
+.void {
+  background-color: #f0f0ff;
+}
+
+.void ::selection {
+  background-color: #c6e2ff;
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 0.9rem;
+}
+
+h1 {
+  font-weight: normal;
+  font-feature-settings: "smcp";
+  text-transform: lowercase;
+  font-size: 1.15rem;
+  letter-spacing: 0.06rem;
+  margin-bottom: 0.2rem;
+}
+
+header h1 {
+  margin-top: 0;
+  font-weight: normal;
+  font-size: 1.7rem;
+  font-feature-settings: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+  margin-bottom: 0.9rem;
+}
+
+h1 code {
+  text-transform: none;
+}
+
+h2,
+h3 {
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+}
+
+h2 {
+  font-size: 1.15rem;
+}
+
+h3 {
+  font-size: 1rem;
+}
+
+h1 + h2,
+h2 + h3 {
+  margin-top: 0rem;
+}
+
+h1 span.header-section-number::after {
+  content: ".";
+}
+
+a {
+  text-decoration: none;
+  color: #049d67;
+}
+
+a:focus {
+  outline-width: 2px;
+  outline-style: dashed;
+  outline-color: #00b374;
+}
+
+a.nofocus:focus {
+  outline-style: none;
+}
+
+p {
+  line-height: 1.48;
+}
+
+p em {
+  font-style: italic;
+}
+
+img {
+  position: relative;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  max-width: 110%;
+  display: block;
+}
+
+code {
+  font-family: "fira mono", monospace;
+  font-size: 82%;
+  word-break: break-all;
+  hyphens: none;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
+}
+
+code a {
+  color: #333;
+}
+
+pre {
+  background-color: #f5f9f9;
+  font-size: 0.86rem;
+  overflow-x: auto;
+  margin: 0.9rem -1.15em;
+  padding: 0.5rem 1rem;
+  border-radius: 7px;
+}
+
+.wide {
+  margin: 0.9rem -3.25em;
+}
+
+@media all and (max-width: 600px) {
+  pre,
+  .wide {
+    margin: 0.9rem 0;
+  }
+}
+
+pre ::selection {
+  background-color: #e0e0e0;
+}
+
+pre code {
+  display: block;
+}
+
+q {
+  font-style: italic;
+}
+
+blockquote {
+  font-style: italic;
+  font-size: 95%;
+  padding-left: 0.5rem;
+  margin-top: -0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+blockquote p {
+  margin-bottom: 0.5rem;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding-left: 0.25rem;
+  margin-bottom: 0.35rem;
+}
+
+.listing {
+  padding-left: 0;
+}
+
+ol li {
+  list-style: decimal;
+}
+
+p + ul {
+  margin-top: -0.25rem;
+}
+
+li,
+dt {
+  font-size: 96%;
+}
+
+li {
+  margin-bottom: 0.25rem;
+}
+
+dt {
+  margin-bottom: 0.3rem;
+}
+
+dd {
+  font-size: 93%;
+  margin-bottom: 0.4rem;
+}
+
+ul li::before,
+dt::before {
+  content: "»";
+  margin-right: 0.4rem;
+}
+
+ol li {
+  list-style-position: inside;
+}
+
+.listing li::before {
+  content: "-";
+  margin-right: 0.4rem;
+}
+
+header {
+  white-space: nowrap;
+}
+
+.footnotes {
+  margin-top: 1.17rem;
+  font-size: 0.91rem;
+}
+
+.footnotes ul {
+  padding-left: 0;
+}
+
+.footnotes li::before {
+  content: "";
+  margin-right: 0;
+}
+
+.symbol {
+  margin-right: 0.3rem;
+  user-select: none;
+}
+
+.sc,
+.cap {
+  font-feature-settings: "smcp";
+  text-transform: lowercase;
+}
+
+.c2sc {
+  font-feature-settings: "c2sc";
+}
+
+.sc {
+  hyphens: none;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
+  letter-spacing: 0.06rem;
+}
+
+:lang(ja) {
+  font-size: 89%;
+  font-family: "Hiragino Mincho ProN", YuMincho, "Yu Mincho", "Noto Serif CJK JP",
+    "Source Han Serif JP", "MS Mincho", HiraMinProN-W3, serif;
+}
+
+:lang(zh-Hans) {
+  font-size: 89%;
+  font-family: "Songti SC", "Noto Serif CJK SC", "Source Han Serif CN", "Source Han Serif SC",
+    NSimSun, SimSun, "LiSong Pro", PMingLiU, MingLiU, HiraMinProN-W3, serif;
+}
+
+:lang(zh-Hant) {
+  font-size: 89%;
+  font-family: "Songti TC", "Noto Serif CJK TC", "Source Han Serif CN", "Source Han Serif TC",
+    PMingLiU, STSong, "LiSong Pro", MingLiU, NSimSun, SimSun, HiraMinProN-W3, serif;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.dlig {
+  font-feature-settings: "dlig";
+}
+
+.rali {
+  text-align: right;
+}
+
+.mgnote {
+  float: inherit;
+  margin-right: inherit;
+  width: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  border-left: inherit;
+  padding-left: inherit;
+  margin-top: inherit;
+}
+
+.mgnote::before {
+  content: " (";
+}
+
+.mgnote::after {
+  content: ")";
+}
+
+.mgnote.darkzone {
+  display: none;
+}
+
+@media screen and (min-width: 1120px) {
+  .mgnote {
+    float: right;
+    margin-right: -13.5em;
+    width: 10.25em;
+    font-size: 0.75em;
+    line-height: 1.32;
+    border-left: 2px solid #00cf86;
+    padding-left: 0.4rem;
+    margin-top: 0.28rem;
+  }
+
+  .mgnote.left {
+    float: left;
+    margin-left: -14.2em;
+    margin-right: 0;
+    border-left: none;
+    padding-left: 0;
+    border-right: 2px solid #00cf86;
+    padding-right: 0.4rem;
+    text-align: right;
+  }
+
+  .mgnote.darkzone {
+    display: inherit;
+    border-left: inherit;
+  }
+
+  .mgnote::after {
+    content: ".";
+  }
+
+  .no-period::after {
+    content: "";
+  }
+
+  .mgnote::before {
+    content: "";
+  }
+}
+
+.darkzone,
+.darkzone * {
+  color: #f9fffa;
+}

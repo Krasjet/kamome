@@ -1,0 +1,123 @@
+html {
+  font-size: 2.4vw;
+  height: 100%;
+  overflow: hidden;
+  font-family: garibaldi, palatino, serif;
+}
+
+@media all and (min-width: 960px) {
+  html {
+    font-size: 23px;
+  }
+}
+
+@media all and (max-width: 715px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+::selection {
+  background-color: #c1feae;
+}
+
+body {
+  font-size: 1rem;
+  color: #222;
+}
+
+a {
+  text-decoration: none;
+  color: #049d67;
+}
+
+main {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 55px 1fr;
+  grid-template-areas:
+    "menu   preview"
+    "editor preview";
+}
+
+#editor {
+  resize: none;
+  grid-area: editor;
+}
+
+#preview {
+  grid-area: preview;
+  border-left: 1px solid #ddd;
+}
+
+#preview-frame {
+  height: 100%;
+  width: 100%;
+}
+
+#menu {
+  grid-area: menu;
+  font-family: graviola, sans-serif;
+  font-weight: bold;
+  font-size: 19.5px;
+  white-space: nowrap;
+  background-color: #f6f6f6;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  padding: 5px 1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  font-family: inherit;
+  font-size: 85%;
+  font-weight: bold;
+  padding: 5px 6px;
+  min-width: 75px;
+  color: #f9fffa;
+  border-radius: 3px;
+  background: #05b677;
+  cursor: pointer;
+}
+
+#menu-buttons {
+  grid-area: buttons;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 0.7em;
+  grid-template-areas: "render save vim";
+  align-items: center;
+}
+
+#menu-render {
+  grid-area: render;
+}
+
+#menu-save {
+  grid-area: save;
+}
+
+#menu-vim {
+  font-size: 95%;
+  grid-area: vim;
+}
+
+#menu-vim label {
+  margin: 0;
+}
+
+[type="checkbox"] {
+  vertical-align: middle;
+}
+
+#menu-help {
+  font-size: 95%;
+  grid-area: help;
+}
+
+.CodeMirror {
+  height: 100%;
+  font-size: 0.75rem;
+}

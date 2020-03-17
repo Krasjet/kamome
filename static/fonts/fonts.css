@@ -1,0 +1,71 @@
+@font-face {
+  font-family: garibaldi;
+  font-style: normal;
+  font-weight: normal;
+  font-stretch: normal;
+  src: url(garibaldi-regular.woff);
+  font-display: swap;
+}
+
+@font-face {
+  font-family: garibaldi;
+  font-style: italic;
+  font-weight: normal;
+  font-stretch: normal;
+  src: url(garibaldi-italic.woff);
+  font-display: swap;
+}
+
+@font-face {
+  font-family: garibaldi;
+  font-style: normal;
+  font-weight: bold;
+  font-stretch: normal;
+  src: url(garibaldi-medium.woff);
+  font-display: swap;
+}
+
+@font-face {
+  font-family: garibaldi;
+  font-style: italic;
+  font-weight: bold;
+  font-stretch: normal;
+  src: url(garibaldi-medium-italic.woff);
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "fira mono";
+  font-style: normal;
+  font-weight: normal;
+  font-stretch: normal;
+  src: url(fira-mono-regular.woff);
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "fira mono";
+  font-style: italic;
+  font-weight: normal;
+  font-stretch: normal;
+  src: url(fira-mono-regular.woff);
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "fira mono";
+  font-style: normal;
+  font-weight: bold;
+  font-stretch: normal;
+  src: url(fira-mono-bold.woff);
+  font-display: swap;
+}
+
+@font-face {
+  font-family: graviola;
+  font-style: normal;
+  font-weight: bold;
+  font-stretch: normal;
+  src: url(graviola-medium.woff);
+  font-display: swap;
+}

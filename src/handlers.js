@@ -13,10 +13,16 @@ function toogleVim(checkbox, editor) {
 
 // render the preview frame
 function renderPreview(previewFrame, editor) {
+  // use the access code from storage first
+  let accessCode = sessionStorage["accessCode"];
+  if (!accessCode) accessCode = prompt("Access code (will be saved, probably for a while):");
+
+  let preview = previewFrame.contentDocument;
+
   let reqBody = {
     docId: getDocId(),
     markdown: editor.getValue(),
-    accessCode: "test" // TODO replace this with real access code
+    accessCode: accessCode
   };
   fetch(process.env.KARASU_SERVER + "/api/preview", {
     method: "POST",
@@ -25,10 +31,17 @@ function renderPreview(previewFrame, editor) {
   })
     .then(res => res.text())
     .then(html => {
-      let preview = previewFrame.contentDocument;
       preview.open();
       preview.write(html);
       preview.close();
+      sessionStorage["accessCode"] = accessCode;
+    })
+    .catch(e => {
+      preview.open();
+      preview.write("Something went wrong. Try again.\n\n" + e);
+      preview.close();
+      // prompt again next time
+      sessionStorage.removeItem("accessCode");
     });
 }
 

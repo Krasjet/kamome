@@ -2,7 +2,8 @@ import CodeMirror from "codemirror";
 import "codemirror/lib/codemirror.css";
 import "codemirror/addon/dialog/dialog.css";
 import "codemirror/keymap/vim";
-import "codemirror/mode/markdown/markdown";
+import "codemirror/mode/gfm/gfm";
+import "codemirror/mode/yaml-frontmatter/yaml-frontmatter";
 import "codemirror/addon/dialog/dialog";
 import { toogleVim, renderPreview, fetchCode } from "./handlers";
 
@@ -12,7 +13,7 @@ const renderButton = document.getElementById("menu-render");
 const saveButton = document.getElementById("menu-save");
 const vimCheckbox = document.getElementById("toggle-vim");
 const editor = CodeMirror.fromTextArea(editorTag, {
-  mode: "markdown",
+  mode: "yaml-frontmatter",
   lineNumbers: true,
   tabSize: 2,
   lineWrapping: true,

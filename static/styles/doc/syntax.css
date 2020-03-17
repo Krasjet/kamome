@@ -1,0 +1,16 @@
+/* Comment */
+code span.co {
+  color: #999;
+}
+/* Documentation */
+code span.do {
+  color: #999;
+}
+/* DataType */
+code span.dt {
+  font-weight: bold;
+}
+/* String */
+code span.st {
+  color: #689;
+}

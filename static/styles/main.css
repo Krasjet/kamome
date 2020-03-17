@@ -118,6 +118,7 @@ button {
 }
 
 .CodeMirror {
+  font-family: "fira mono", monospace;
   height: 100%;
   font-size: 0.75rem;
 }

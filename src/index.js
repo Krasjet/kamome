@@ -5,7 +5,7 @@ import "codemirror/keymap/vim";
 import "codemirror/mode/gfm/gfm";
 import "codemirror/mode/yaml-frontmatter/yaml-frontmatter";
 import "codemirror/addon/dialog/dialog";
-import { toogleVim, renderPreview, fetchCode } from "./handlers";
+import { setInitPreview, toogleVim, renderPreview, fetchCode } from "./handlers";
 
 const editorTag = document.getElementById("editor");
 const previewFrame = document.getElementById("preview-frame");
@@ -31,6 +31,7 @@ CodeMirror.Vim.map("k", "gk");
 // after refresh, the checkbox is sometimes checked by default
 toogleVim(vimCheckbox, editor);
 fetchCode(editor);
+setInitPreview(previewFrame);
 
 // add listeners
 vimCheckbox.addEventListener("click", () => toogleVim(vimCheckbox, editor));

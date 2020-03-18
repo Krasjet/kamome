@@ -5,7 +5,7 @@ import "codemirror/keymap/vim";
 import "codemirror/mode/gfm/gfm";
 import "codemirror/mode/yaml-frontmatter/yaml-frontmatter";
 import "codemirror/addon/dialog/dialog";
-import { setInitPreview, toogleVim, renderPreview, fetchCode } from "./handlers";
+import { setInitPreview, toogleVim, renderPreview, fetchCode, saveDoc } from "./handlers";
 
 const editorTag = document.getElementById("editor");
 const previewFrame = document.getElementById("preview-frame");
@@ -36,3 +36,4 @@ setInitPreview(previewFrame);
 // add listeners
 vimCheckbox.addEventListener("click", () => toogleVim(vimCheckbox, editor));
 renderButton.addEventListener("click", () => renderPreview(previewFrame, editor));
+saveButton.addEventListener("click", () => saveDoc(previewFrame, editor));

@@ -85,9 +85,9 @@ button {
 #menu-buttons {
   grid-area: buttons;
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto auto auto;
   gap: 0.7em;
-  grid-template-areas: "render save vim";
+  grid-template-areas: "render save vim status";
   align-items: center;
 }
 
@@ -100,11 +100,20 @@ button {
 }
 
 #menu-vim {
-  font-size: 95%;
+  margin-bottom:2px;
   grid-area: vim;
 }
 
-#menu-vim label {
+#menu-status {
+  margin-right: auto;
+  margin-left: 0.7rem;
+  color: #888;
+  grid-area: status;
+}
+
+label {
+  user-select: none;
+  font-size:90%;
   margin: 0;
 }
 
@@ -113,7 +122,7 @@ button {
 }
 
 #menu-help {
-  font-size: 95%;
+  font-size: 90%;
   grid-area: help;
 }
 

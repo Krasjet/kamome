@@ -15,16 +15,17 @@
     <main>
       <div id="menu">
         <div id="menu-buttons">
-          <button id="menu-render">Render</button>
-          <button id="menu-save">Save</button>
+          <button id="menu-render">render</button>
+          <button id="menu-save">save</button>
           <div id="menu-vim" title="For myself. Use it if you know vim.">
             <input type="checkbox" id="toggle-vim" />
             <label for="toggle-vim">vim</label>
           </div>
         </div>
+        <label id="menu-status">:loading:</label>
         <a href="/" id="menu-help">help</a>
       </div>
-      <textarea id="editor">Loading...</textarea>
+      <textarea id="editor"></textarea>
       <div id="preview">
         <iframe id="preview-frame"> </iframe>
       </div>

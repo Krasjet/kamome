@@ -8,7 +8,8 @@ import {
   askAccessCode,
   saveAccessCode,
   clearAccessCode,
-  appendCodeToBody
+  appendCodeToBody,
+  setStatus
 } from "./utils";
 
 // toogle editor's vim mode
@@ -22,12 +23,17 @@ function toogleVim(checkbox, editor) {
 
 // render the preview frame
 function renderPreview(previewFrame, editor) {
+  let accessCode = askAccessCode();
+  // clicked cancel
+  if (accessCode === null) {
+    return;
+  }
+
   // do not render if nothing has been changed yet
   if (isCleanSince(editor, window.lastRender)) {
     return;
   }
 
-  let accessCode = askAccessCode();
   let preview = previewFrame.contentDocument;
 
   let reqBody = {
@@ -36,6 +42,7 @@ function renderPreview(previewFrame, editor) {
   };
   appendCodeToBody(reqBody, accessCode);
 
+  setStatus("rendering");
   fetch(process.env.KARASU_SERVER + "/api/preview", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -44,15 +51,19 @@ function renderPreview(previewFrame, editor) {
     .then(res => {
       if (!res.ok) {
         clearAccessCode();
+        setStatus("no access");
+        res.text().then(text => setPreviewContent(preview, text));
+      } else {
+        res.text().then(html => {
+          setPreviewContent(preview, html);
+          saveAccessCode(accessCode);
+          window.lastRender = markClean(editor);
+          setStatus("done");
+        });
       }
-      return res.text();
-    })
-    .then(html => {
-      setPreviewContent(preview, html);
-      saveAccessCode(accessCode);
-      window.lastRender = markClean(editor);
     })
     .catch(e => {
+      setStatus("error");
       setPreviewContent(preview, "Something went wrong. Try again.\n\n" + e);
       // prompt again next time
       clearAccessCode();
@@ -67,10 +78,11 @@ function fetchCode(editor) {
       editor.setValue(data.markdown);
       // global variable to keep track of the version
       window.docVersion = data.version;
-      console.log("doc version: " + data.version);
+      setStatus("loaded ver " + data.version);
     })
     .catch(e => {
       editor.setValue("# Error obtaining the document\n\n" + e);
+      setStatus("error");
     });
   window.lastChanged = markClean(editor);
 }
@@ -89,12 +101,17 @@ function setInitPreview(previewFrame) {
 
 // save the document the preview frame
 function saveDoc(previewFrame, editor) {
+  let accessCode = askAccessCode();
+  // clicked cancel
+  if (accessCode === null) {
+    return;
+  }
+
   // do not save if nothing has been changed yet
   if (isCleanSince(editor, window.lastSave)) {
     return;
   }
 
-  let accessCode = askAccessCode();
   let preview = previewFrame.contentDocument;
 
   let reqBody = {
@@ -104,30 +121,37 @@ function saveDoc(previewFrame, editor) {
   };
   appendCodeToBody(reqBody, accessCode);
 
+  setStatus("saving");
   fetch(process.env.KARASU_SERVER + "/api/save", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(reqBody)
   })
     .then(res => {
+      // no access
       if (res.statusCode == 403) {
+        setStatus("no access");
         clearAccessCode();
+      }
+      if (res.statusCode == 409) {
+        setStatus("conflict");
       }
       if (!res.ok) {
         res.text().then(text => setPreviewContent(preview, text));
       } else {
-        return res.json();
+        res.json().then(data => {
+          setPreviewContent(preview, data.html);
+          window.docVersion = data.newVersion;
+          console.log("doc version: " + data.newVersion);
+          saveAccessCode(accessCode);
+          window.lastSave = markClean(editor);
+          setStatus("saved");
+        });
       }
-    })
-    .then(data => {
-      setPreviewContent(preview, data.html);
-      window.docVersion = data.newVersion;
-      console.log("doc version: " + data.newVersion);
-      saveAccessCode(accessCode);
-      window.lastSave = markClean(editor);
     })
     .catch(e => {
       setPreviewContent(preview, "Something went wrong. Try again.\n\n" + e);
+      setStatus("error");
       // prompt again next time
       clearAccessCode();
     });

@@ -36,7 +36,7 @@ function setStatus(message) {
 // Get access code from user
 function askAccessCode() {
   // only ask if storage is empty
-  if (sessionStorage["accessCode"] === undefined)
+  if (sessionStorage["accessCode"] === undefined || sessionStorage["docId"] !== getDocId())
     return prompt("Access code (will be saved, probably for a while):");
   return sessionStorage["accessCode"];
 }
@@ -44,11 +44,13 @@ function askAccessCode() {
 // Save access code for the session
 function saveAccessCode(accessCode) {
   sessionStorage["accessCode"] = accessCode;
+  sessionStorage["docId"] = getDocId();
 }
 
 // clear access code for the session
 function clearAccessCode() {
   sessionStorage.removeItem("accessCode");
+  sessionStorage.removeItem("docId");
 }
 
 // Append access code to request body

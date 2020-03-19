@@ -82,6 +82,18 @@ button {
   cursor: pointer;
 }
 
+button:hover {
+  background: #03c781;
+}
+
+button:active {
+  background: #05b677;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+}
+
 #menu-buttons {
   grid-area: buttons;
   display: grid;
@@ -100,7 +112,7 @@ button {
 }
 
 #menu-vim {
-  margin-bottom:2px;
+  margin-bottom: 2px;
   grid-area: vim;
 }
 
@@ -113,7 +125,7 @@ button {
 
 label {
   user-select: none;
-  font-size:90%;
+  font-size: 90%;
   margin: 0;
 }
 

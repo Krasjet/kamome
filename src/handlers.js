@@ -151,7 +151,7 @@ function saveDoc(previewFrame, editor) {
         res.json().then(data => {
           setPreviewContent(previewFrame, data.html);
           window.docVersion = data.newVersion;
-          setStatus("saved as " + data.newVersion);
+          setStatus("saved ver" + data.newVersion);
           saveAccessCode(accessCode);
           window.lastSave = markClean(editor);
         });

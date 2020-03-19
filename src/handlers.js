@@ -43,7 +43,7 @@ function renderPreview(previewFrame, editor) {
   appendCodeToBody(reqBody, accessCode);
 
   setStatus("rendering");
-  fetch(process.env.KARASU_SERVER + "/api/preview", {
+  fetch(window.location.origin + "/api/preview", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(reqBody)
@@ -72,7 +72,7 @@ function renderPreview(previewFrame, editor) {
 
 // fetch code from url
 function fetchCode(editor) {
-  fetch(process.env.KARASU_SERVER + "/api/get/" + getDocId())
+  fetch(window.location.origin + "/api/get/" + getDocId())
     .then(res => res.json())
     .then(data => {
       editor.setValue(data.markdown);
@@ -96,7 +96,7 @@ function setPreviewContent(previewContent, content) {
 
 // fetch the initial preview
 function setInitPreview(previewFrame) {
-  previewFrame.src = process.env.KARASU_SERVER + "/view/" + getDocId();
+  previewFrame.src = window.location.origin + "/view/" + getDocId();
 }
 
 // save the document the preview frame
@@ -122,7 +122,7 @@ function saveDoc(previewFrame, editor) {
   appendCodeToBody(reqBody, accessCode);
 
   setStatus("saving");
-  fetch(process.env.KARASU_SERVER + "/api/save", {
+  fetch(window.location.origin + "/api/save", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(reqBody)

@@ -1,5 +1,4 @@
 const path = require("path");
-const Dotenv = require("dotenv-webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 
@@ -9,7 +8,6 @@ module.exports = {
       filename: "styles/app/[name].css"
     }),
     new CopyPlugin([{ from: "static", to: "./" }]),
-    new Dotenv()
   ],
   entry: "./src/index.js",
   output: {

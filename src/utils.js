@@ -5,7 +5,8 @@ export {
   askAccessCode,
   saveAccessCode,
   clearAccessCode,
-  appendCodeToBody
+  appendCodeToBody,
+  setStatus
 };
 
 // Fetch doc id from path
@@ -26,8 +27,12 @@ function markClean(editor) {
   return editor.changeGeneration(true);
 }
 
-// Access code related
+// Set the status bar
+function setStatus(message) {
+  document.getElementById("menu-status").innerText = ":" + message + ":";
+}
 
+// Access code related
 // Get access code from user
 function askAccessCode() {
   // only ask if storage is empty

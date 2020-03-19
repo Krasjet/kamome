@@ -33,9 +33,6 @@ function renderPreview(previewFrame, editor) {
   if (isCleanSince(editor, window.lastRender)) {
     return;
   }
-
-  let preview = previewFrame.contentDocument;
-
   let reqBody = {
     docId: getDocId(),
     markdown: editor.getValue()
@@ -52,10 +49,10 @@ function renderPreview(previewFrame, editor) {
       if (!res.ok) {
         clearAccessCode();
         setStatus("no access");
-        res.text().then(text => setPreviewContent(preview, text));
+        res.text().then(text => setPreviewContent(previewFrame, text));
       } else {
         res.text().then(html => {
-          setPreviewContent(preview, html);
+          setPreviewContent(previewFrame, html);
           saveAccessCode(accessCode);
           window.lastRender = markClean(editor);
           setStatus("done");
@@ -64,7 +61,7 @@ function renderPreview(previewFrame, editor) {
     })
     .catch(e => {
       setStatus("error");
-      setPreviewContent(preview, "Something went wrong. Try again.\n\n" + e);
+      setPreviewContent(previewFrame, "Something went wrong. Try again.\n\n" + e);
       // prompt again next time
       clearAccessCode();
     });
@@ -72,7 +69,9 @@ function renderPreview(previewFrame, editor) {
 
 // fetch code from url
 function fetchCode(editor) {
-  fetch(window.location.origin + "/api/get/" + getDocId())
+  fetch(window.location.origin + "/api/get/" + getDocId(), {
+    cache: "no-store" // do not cache result
+  })
     .then(res => res.json())
     .then(data => {
       editor.setValue(data.markdown);
@@ -88,7 +87,8 @@ function fetchCode(editor) {
 }
 
 // write to preview frame
-function setPreviewContent(previewContent, content) {
+function setPreviewContent(previewFrame, content) {
+  let previewContent = previewFrame.contentDocument;
   previewContent.open();
   previewContent.write(content);
   previewContent.close();
@@ -96,7 +96,18 @@ function setPreviewContent(previewContent, content) {
 
 // fetch the initial preview
 function setInitPreview(previewFrame) {
-  previewFrame.src = window.location.origin + "/view/" + getDocId();
+  fetch(window.location.origin + "/view/" + getDocId(), {
+    cache: "no-store" // do not cache result
+  })
+    .then(res => res.text())
+    .then(html => {
+      setPreviewContent(previewFrame, html);
+    })
+    .catch(e => {
+      setPreviewContent(previewFrame, "Error retreiving the preview\n\n" + e);
+      setStatus("error");
+    });
+  // previewFrame.src = window.location.origin + "/view/" + getDocId();
 }
 
 // save the document the preview frame
@@ -111,8 +122,6 @@ function saveDoc(previewFrame, editor) {
   if (isCleanSince(editor, window.lastSave)) {
     return;
   }
-
-  let preview = previewFrame.contentDocument;
 
   let reqBody = {
     docId: getDocId(),
@@ -137,10 +146,10 @@ function saveDoc(previewFrame, editor) {
         setStatus("conflict");
       }
       if (!res.ok) {
-        res.text().then(text => setPreviewContent(preview, text));
+        res.text().then(text => setPreviewContent(previewFrame, text));
       } else {
         res.json().then(data => {
-          setPreviewContent(preview, data.html);
+          setPreviewContent(previewFrame, data.html);
           window.docVersion = data.newVersion;
           console.log("doc version: " + data.newVersion);
           saveAccessCode(accessCode);
@@ -150,7 +159,7 @@ function saveDoc(previewFrame, editor) {
       }
     })
     .catch(e => {
-      setPreviewContent(preview, "Something went wrong. Try again.\n\n" + e);
+      setPreviewContent(previewFrame, "Something went wrong. Try again.\n\n" + e);
       setStatus("error");
       // prompt again next time
       clearAccessCode();

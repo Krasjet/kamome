@@ -1,5 +1,5 @@
 // I hate JavaScript
-export { toogleVim, renderPreview, fetchCode, setInitPreview, saveDoc };
+export { toogleVim, renderPreview, fetchCode, setInitPreview, saveDoc, checkSaved};
 
 import {
   getDocId,
@@ -9,7 +9,7 @@ import {
   saveAccessCode,
   clearAccessCode,
   appendCodeToBody,
-  setStatus
+  setStatus,
 } from "./utils";
 
 // toogle editor's vim mode
@@ -83,7 +83,7 @@ function fetchCode(editor) {
       editor.setValue("# Error obtaining the document\n\n" + e);
       setStatus("error");
     });
-  window.lastChanged = markClean(editor);
+  window.lastSave = markClean(editor);
 }
 
 // write to preview frame
@@ -163,4 +163,16 @@ function saveDoc(previewFrame, editor) {
       // prompt again next time
       clearAccessCode();
     });
+}
+
+// check saved status, warn before unload window
+function checkSaved(e, editor) {
+  // just in case
+  sessionStorage["docBackup"] = editor.getValue();
+  if (!isCleanSince(editor, window.lastSave)) {
+    e.preventDefault();
+    let msg = "Document not saved.";
+    e.returnValue = msg;
+    return msg;
+  }
 }

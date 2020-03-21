@@ -44,14 +44,6 @@ body {
   text-align: right;
 }
 
-.void {
-  background-color: #f0f0ff;
-}
-
-.void ::selection {
-  background-color: #c6e2ff;
-}
-
 h1,
 h2,
 h3 {
@@ -333,10 +325,6 @@ header {
   content: ")";
 }
 
-.mgnote.darkzone {
-  display: none;
-}
-
 @media screen and (min-width: 1120px) {
   .mgnote {
     float: right;
@@ -378,7 +366,13 @@ header {
   }
 }
 
-.darkzone,
-.darkzone * {
-  color: #f9fffa;
+.math {
+  display: inline-block;
+  margin-left: initial;
+  transform: initial;
+}
+
+.tex:not(.math) {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }

@@ -1,5 +1,5 @@
 // I hate JavaScript
-export { toogleVim, renderPreview, fetchCode, setInitPreview, saveDoc, checkSaved};
+export { toogleVim, renderPreview, fetchCode, setInitPreview, saveDoc, checkSaved, syncScroll };
 
 import {
   getDocId,
@@ -9,7 +9,7 @@ import {
   saveAccessCode,
   clearAccessCode,
   appendCodeToBody,
-  setStatus,
+  setStatus
 } from "./utils";
 
 // toogle editor's vim mode
@@ -55,6 +55,7 @@ function renderPreview(previewFrame, editor) {
           setPreviewContent(previewFrame, html);
           saveAccessCode(accessCode);
           window.lastRender = markClean(editor);
+          syncScroll(previewFrame, editor.getScrollInfo());
           setStatus("done");
         });
       }
@@ -89,9 +90,11 @@ function fetchCode(editor) {
 // write to preview frame
 function setPreviewContent(previewFrame, content) {
   let previewContent = previewFrame.contentDocument;
-  previewContent.open();
-  previewContent.write(content);
-  previewContent.close();
+  if (previewContent) {
+    previewContent.open();
+    previewContent.write(content);
+    previewContent.close();
+  }
 }
 
 // fetch the initial preview
@@ -151,9 +154,10 @@ function saveDoc(previewFrame, editor) {
         res.json().then(data => {
           setPreviewContent(previewFrame, data.html);
           window.docVersion = data.newVersion;
-          setStatus("saved ver" + data.newVersion);
           saveAccessCode(accessCode);
           window.lastSave = markClean(editor);
+          syncScroll(previewFrame, editor.getScrollInfo());
+          setStatus("saved ver" + data.newVersion);
         });
       }
     })
@@ -174,5 +178,18 @@ function checkSaved(e, editor) {
     let msg = "Document not saved.";
     e.returnValue = msg;
     return msg;
+  }
+}
+
+// synchronize editor scrolling to preview frame scrolling (one-way)
+function syncScroll(previewFrame, scrollInfo) {
+  // don't ask me why we need to pass scrollinfo all around
+  let editorMaxTop = scrollInfo.height - scrollInfo.clientHeight;
+  let editorTop = scrollInfo.top;
+
+  if (previewFrame.contentDocument) {
+    let html = previewFrame.contentDocument.getElementsByTagName("html")[0];
+    let frameMaxTop = html.scrollTopMax;
+    html.scrollTop = frameMaxTop * (editorTop / editorMaxTop);
   }
 }

@@ -29,7 +29,10 @@ function markClean(editor) {
 
 // Set the status bar
 function setStatus(message) {
-  document.getElementById("menu-status").innerText = ":" + message + ":";
+  let status = document.getElementById("menu-status");
+  if (status) {
+    status.innerText = ":" + message + ":";
+  }
 }
 
 // Access code related

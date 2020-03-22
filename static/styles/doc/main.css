@@ -259,7 +259,7 @@ header {
   user-select: none;
 }
 
-.sc,
+.textsc,
 .cap {
   font-feature-settings: "smcp";
   text-transform: lowercase;
@@ -269,7 +269,7 @@ header {
   font-feature-settings: "c2sc";
 }
 
-.sc {
+.textsc {
   hyphens: none;
   -webkit-hyphens: none;
   -ms-hyphens: none;

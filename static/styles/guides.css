@@ -25,22 +25,23 @@ body {
 
 a {
   font-size: 4rem;
-  color:inherit;
+  color: inherit;
   user-select: none;
   text-decoration: none;
   margin: auto;
 }
 
 main {
-  display: grid;
   height: 100vh;
   width: 100vw;
-  grid-template-columns: 50% 50%;
-  grid-template-areas: "karasu kamome";
+  display: flex;
+  justify-content: center;
 }
 
 #karasu {
   display: flex;
+  width: 100%;
+  height: 100%;
   align-items: center;
   justify-content: center;
   background-color: #2a2a2a;
@@ -48,7 +49,7 @@ main {
   grid-area: karasu;
 }
 
-#karasu a:hover{
+#karasu a:hover {
   color: #fff;
 }
 
@@ -60,6 +61,8 @@ main {
 
 #kamome {
   display: flex;
+  width: 100%;
+  height: 100%;
   align-items: center;
   justify-content: center;
   background-color: #e0e0e0;
@@ -67,7 +70,7 @@ main {
   grid-area: kamome;
 }
 
-#kamome a:hover{
+#kamome a:hover {
   color: #000;
 }
 
@@ -76,3 +79,16 @@ main {
   outline-style: dashed;
   outline-color: #111;
 }
+
+@media all and (orientation:landscape){
+  main {
+    flex-direction: row;
+  }
+}
+
+@media all and (max-width: 768px) and (orientation:portrait) {
+  main {
+    flex-direction: column;
+  }
+}
+

@@ -1,0 +1,78 @@
+html {
+  font-size: 2.4vw;
+  height: 100%;
+  overflow: hidden;
+  font-family: garibaldi, palatino, serif;
+}
+
+@media all and (min-width: 960px) {
+  html {
+    font-size: 23px;
+  }
+}
+
+@media all and (max-width: 715px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+body {
+  background-color: #ddd;
+  font-size: 1rem;
+  color: #2a2a2a;
+}
+
+a {
+  font-size: 4rem;
+  color:inherit;
+  user-select: none;
+  text-decoration: none;
+  margin: auto;
+}
+
+main {
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+  grid-template-columns: 50% 50%;
+  grid-template-areas: "karasu kamome";
+}
+
+#karasu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  grid-area: karasu;
+}
+
+#karasu a:hover{
+  color: #fff;
+}
+
+#karasu a:focus {
+  outline-width: 4px;
+  outline-style: dashed;
+  outline-color: #eee;
+}
+
+#kamome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e0e0e0;
+  color: #333;
+  grid-area: kamome;
+}
+
+#kamome a:hover{
+  color: #000;
+}
+
+#kamome a:focus {
+  outline-width: 4px;
+  outline-style: dashed;
+  outline-color: #111;
+}

@@ -78,13 +78,14 @@ function fetchCode(editor) {
       editor.setValue(data.markdown);
       // global variable to keep track of the version
       window.docVersion = data.version;
+      window.lastSave = markClean(editor);
       setStatus("loaded ver " + data.version);
     })
     .catch(e => {
       editor.setValue("# Error obtaining the document\n\n" + e);
+      window.lastSave = markClean(editor);
       setStatus("error");
     });
-  window.lastSave = markClean(editor);
 }
 
 // write to preview frame

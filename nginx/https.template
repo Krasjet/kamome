@@ -19,6 +19,16 @@ http {
     listen 80;
     server_name ${NGINX_HOST};
 
+    return 302 https://$server_name$request_uri;
+  }
+
+  server {
+    listen 443 ssl;
+    server_name ${NGINX_HOST};
+
+    ssl_certificate /etc/ssl/certs/${SSL_CERT};
+    ssl_certificate_key /etc/ssl/certs/${SSL_KEY};
+
     root /app;
     index index.html;
     error_page 403 404 /404.html;

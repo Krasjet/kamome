@@ -1,4 +1,4 @@
-# --- build dvisvgm ---
+# --- build kamome ---
 FROM node:13.10.1 AS build-kamome
 
 WORKDIR /build

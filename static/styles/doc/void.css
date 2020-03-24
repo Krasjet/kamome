@@ -1,0 +1,7 @@
+.void {
+  background-color: #f0f0ff;
+}
+
+.void ::selection {
+  background-color: #c6e2ff;
+}

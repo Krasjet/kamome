@@ -7,6 +7,8 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack --mode production",
+    "build-docker": "docker build -t kamome .",
+    "run-docker": "docker run -it kamome",
     "build:dev": "webpack --mode development",
     "clean": "rm -rf ./dist/*"
   },

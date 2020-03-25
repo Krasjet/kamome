@@ -366,13 +366,14 @@ header {
   }
 }
 
-.math {
+.math,
+.noenv {
   display: inline-block;
   margin-left: initial;
   transform: initial;
 }
 
-.tex:not(.math) {
+.tex:not(.math):not(.noenv) {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
@@ -383,6 +384,6 @@ hr {
   margin: 0.4rem auto;
 }
 
-p + hr{
+p + hr {
   margin-top: -0.5rem;
 }

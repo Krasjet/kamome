@@ -2,7 +2,7 @@ html {
   font-size: 2.4vw;
   height: 100%;
   overflow: hidden;
-  font-family: garibaldi, palatino, serif;
+  font-family: garibaldi, alegreya, palatino, serif;
 }
 
 @media all and (min-width: 960px) {
@@ -58,7 +58,7 @@ main {
 
 #menu {
   grid-area: menu;
-  font-family: graviola, sans-serif;
+  font-family: graviola, 'inria sans', sans-serif;
   font-weight: bold;
   font-size: 19.5px;
   white-space: nowrap;

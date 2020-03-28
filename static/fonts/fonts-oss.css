@@ -1,0 +1,71 @@
+@font-face {
+  font-family: alegreya;
+  font-style: normal;
+  font-weight: normal;
+  font-stretch: normal;
+  src: url(alegreya-regular.woff2);
+  font-display: swap;
+}
+
+@font-face {
+  font-family: alegreya;
+  font-style: italic;
+  font-weight: normal;
+  font-stretch: normal;
+  src: url(alegreya-italic.woff2);
+  font-display: swap;
+}
+
+@font-face {
+  font-family: alegreya;
+  font-style: normal;
+  font-weight: bold;
+  font-stretch: normal;
+  src: url(alegreya-medium.woff2);
+  font-display: swap;
+}
+
+@font-face {
+  font-family: alegreya;
+  font-style: italic;
+  font-weight: bold;
+  font-stretch: normal;
+  src: url(alegreya-medium-italic.woff2);
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "fira mono";
+  font-style: normal;
+  font-weight: normal;
+  font-stretch: normal;
+  src: url(fira-mono-regular.woff2);
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "fira mono";
+  font-style: italic;
+  font-weight: normal;
+  font-stretch: normal;
+  src: url(fira-mono-regular.woff2);
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "fira mono";
+  font-style: normal;
+  font-weight: bold;
+  font-stretch: normal;
+  src: url(fira-mono-bold.woff2);
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "inria sans";
+  font-style: normal;
+  font-weight: bold;
+  font-stretch: normal;
+  src: url(inria-sans-bold.woff2);
+  font-display: swap;
+}

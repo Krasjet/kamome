@@ -2,7 +2,7 @@ html {
   font-size: 2.4vw;
   height: 100%;
   overflow: hidden;
-  font-family: garibaldi, palatino, serif;
+  font-family: garibaldi, alegreya, palatino, serif;
 }
 
 @media all and (min-width: 960px) {

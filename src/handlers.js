@@ -190,7 +190,7 @@ function syncScroll(previewFrame, scrollInfo) {
 
   if (previewFrame.contentDocument) {
     let html = previewFrame.contentDocument.getElementsByTagName("html")[0];
-    let frameMaxTop = html.scrollTopMax;
+    let frameMaxTop = html.scrollHeight - html.clientHeight;
     html.scrollTop = frameMaxTop * (editorTop / editorMaxTop);
   }
 }

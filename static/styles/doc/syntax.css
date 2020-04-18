@@ -14,3 +14,22 @@ code span.dt {
 code span.st {
   color: #689;
 }
+
+/* begin/end */
+.latex code span.kw {
+  color: #60ac39;
+}
+/* math command */
+/* math var */
+.latex code span.sc,
+.latex code span.ss {
+  color: #5e6977;
+}
+/* command */
+.latex code span.fu {
+  color: #188867;
+}
+/* env */
+.latex code span.ex {
+  color: #689;
+}

@@ -1,4 +1,4 @@
 **/fonts/*.woff
 dist
 node_modules
-./update.sh
+update.sh

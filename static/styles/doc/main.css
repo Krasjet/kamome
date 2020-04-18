@@ -50,7 +50,7 @@ body {
   font-size: 1rem;
   max-width: 32rem;
   margin: auto;
-  padding: 2.5em 2.25em;
+  padding: 2.5rem 2.25rem;
   hyphens: auto;
   -webkit-hyphens: auto;
   -ms-hyphens: auto;
@@ -59,7 +59,7 @@ body {
 @media all and (max-width: 460px) {
   body {
     max-width: 31rem;
-    padding: 2.5em 1.25em;
+    padding: 2.5rem 1.25rem;
   }
 }
 
@@ -83,9 +83,8 @@ h1 {
   margin-bottom: 0.2rem;
 }
 
-header h1 {
+#title {
   margin-top: 0;
-  font-weight: normal;
   font-size: 1.7rem;
   font-feature-settings: inherit;
   text-transform: inherit;
@@ -168,13 +167,13 @@ pre {
   background-color: #f5f9f9;
   font-size: 0.86rem;
   overflow-x: auto;
-  margin: 0.9rem -1.15em;
+  margin: 0.9rem -1.15rem;
   padding: 0.5rem 1rem;
   border-radius: 7px;
 }
 
 .wide {
-  margin: 0.9rem -3.25em;
+  margin: 0.9rem -3.25rem;
 }
 
 @media all and (max-width: 600px) {
@@ -211,20 +210,27 @@ blockquote p {
 ul,
 ol {
   list-style: none;
-  padding-left: 0.25rem;
   margin-bottom: 0.35rem;
 }
 
-.listing {
-  padding-left: 0;
+li li {
+  padding-left: 0.5rem;
+  font-size: 100%;
+  margin-bottom: 0;
+}
+
+li ul,
+li ol {
+  margin-bottom: 0;
 }
 
 ol li {
   list-style: decimal;
 }
 
-p + ul {
-  margin-top: -0.25rem;
+p + ul,
+p + .links ul {
+  margin-top: -0.3rem;
 }
 
 li,
@@ -245,7 +251,12 @@ dd {
   margin-bottom: 0.4rem;
 }
 
-ul li::before,
+ul li::before {
+  content: "-";
+  margin-right: 0.4rem;
+}
+
+.links li::before,
 dt::before {
   content: "»";
   margin-right: 0.4rem;
@@ -253,11 +264,6 @@ dt::before {
 
 ol li {
   list-style-position: inside;
-}
-
-.listing li::before {
-  content: "-";
-  margin-right: 0.4rem;
 }
 
 header {
@@ -283,7 +289,7 @@ header {
   user-select: none;
 }
 
-.textsc,
+.smcp,
 .cap {
   font-feature-settings: "smcp";
   text-transform: lowercase;
@@ -293,7 +299,7 @@ header {
   font-feature-settings: "c2sc";
 }
 
-.textsc {
+.smcp {
   hyphens: none;
   -webkit-hyphens: none;
   -ms-hyphens: none;
@@ -334,9 +340,9 @@ header {
 @media screen and (min-width: 1120px) {
   .mgnote {
     float: right;
-    margin-right: -13.5em;
-    width: 10.25em;
-    font-size: 0.75em;
+    margin-right: -10.2rem;
+    width: 7.7rem;
+    font-size: 0.75rem;
     line-height: 1.32;
     border-left: 2px solid #00cf86;
     padding-left: 0.4rem;
@@ -345,7 +351,7 @@ header {
 
   .mgnote.left {
     float: left;
-    margin-left: -14.2em;
+    margin-left: -10.7rem;
     margin-right: 0;
     border-left: none;
     padding-left: 0;

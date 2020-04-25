@@ -40,6 +40,12 @@ div:lang(zh-Hant) {
   }
 }
 
+@media print {
+  html {
+    font-size: 12pt;
+  }
+}
+
 ::selection {
   background-color: #c1feae;
 }

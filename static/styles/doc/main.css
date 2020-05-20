@@ -148,12 +148,17 @@ p em {
   font-style: italic;
 }
 
-img {
+img,
+main iframe {
   position: relative;
   margin-left: 50%;
   transform: translateX(-50%);
   max-width: 110%;
   display: block;
+}
+
+main iframe {
+  margin-bottom: 0.9rem;
 }
 
 code {
@@ -270,6 +275,11 @@ ul li::before {
 dt::before {
   content: "»";
   margin-right: 0.4rem;
+}
+
+.nobullet li::before {
+  content: "";
+  margin-right: 0rem;
 }
 
 ol li {

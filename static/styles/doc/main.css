@@ -164,10 +164,13 @@ main iframe {
 code {
   font-family: "fira mono", monospace;
   font-size: 82%;
-  word-break: break-all;
   hyphens: none;
   -webkit-hyphens: none;
   -ms-hyphens: none;
+}
+
+.break-all {
+  word-break: break-all;
 }
 
 code a {

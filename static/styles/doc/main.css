@@ -247,7 +247,8 @@ ol li {
 }
 
 p + ul,
-p + .links ul {
+p + .links ul,
+p + ol {
   margin-top: -0.3rem;
 }
 

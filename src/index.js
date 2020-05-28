@@ -30,9 +30,7 @@ const editor = CodeMirror.fromTextArea(editorTag, {
   extraKeys: {
     Tab: cm => cm.execCommand("indentMore"), // replace tab with spaces
     "Shift-Tab": cm => cm.execCommand("indentLess"),
-    "Ctrl-S": () => {
-      renderPreview(previewFrame, editor);
-    }
+    "Ctrl-S": () => renderPreview(previewFrame, editor)
   }
 });
 

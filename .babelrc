@@ -1,0 +1,11 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false,
+        "targets": "last 2 versions, > 0.20%, not dead"
+      }
+    ]
+  ]
+}

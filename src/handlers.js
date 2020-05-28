@@ -33,6 +33,8 @@ function renderPreview(previewFrame, editor) {
   if (isCleanSince(editor, window.lastRender)) {
     return;
   }
+
+  // now send request to preview server
   let reqBody = {
     docId: getDocId(),
     markdown: editor.getValue()

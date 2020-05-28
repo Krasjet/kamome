@@ -7,7 +7,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "styles/app/[name].css"
     }),
-    new CopyPlugin([{ from: "static", to: "./" }]),
+    new CopyPlugin([{ from: "static", to: "./" }])
   ],
   entry: "./src/index.js",
   output: {
@@ -19,6 +19,11 @@ module.exports = {
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader"]
+      },
+      {
+        test: /\.js$/,
+        use: "babel-loader",
+        exclude: /node_modules/
       }
     ]
   },

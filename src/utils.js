@@ -11,10 +11,10 @@ export {
 
 // Fetch doc id from path
 function getDocId() {
-  return window.location.pathname
-    .split("/")
-    .filter(x => x) // remove empty elements
-    .pop();
+  let tokens = window.location.pathname.split("/");
+  tokens.indexOf("edit");
+
+  return tokens[tokens.indexOf("edit") + 1]; // i.e. the token after "edit"
 }
 
 // Check if nothing has changed since last render

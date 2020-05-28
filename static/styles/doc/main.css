@@ -178,19 +178,21 @@ code a {
 }
 
 pre {
-  background-color: #f5f9f9;
+  background-color: #f4f7f7;
   font-size: 0.86rem;
   overflow-x: auto;
+  word-break: keep-all;
   margin: 0.9rem -1.15rem;
   padding: 0.5rem 1rem;
-  border-radius: 7px;
+  border-radius: 0.4rem;
+  box-shadow: 1px 1px 4px #d5d9d9;
 }
 
 .wide {
-  margin: 0.9rem -3.25rem;
+  margin: 0.9rem -3.3rem;
 }
 
-@media all and (max-width: 600px) {
+@media all and (max-width: 675px) {
   pre,
   .wide {
     margin: 0.9rem 0;
@@ -198,7 +200,7 @@ pre {
 }
 
 pre ::selection {
-  background-color: #e0e0e0;
+  background-color: #dce0e0;
 }
 
 pre code {

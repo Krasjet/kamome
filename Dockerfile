@@ -32,6 +32,7 @@ COPY --from=fonts /build/alegreya/Alegreya-Medium.woff2 /build/static/fonts/aleg
 COPY --from=fonts /build/alegreya/Alegreya-MediumItalic.woff2 /build/static/fonts/alegreya-medium-italic.woff2
 COPY --from=fonts /build/InriaFonts/fonts/InriaSans/Web/InriaSans-Bold.woff2 /build/static/fonts/inria-sans-bold.woff2
 COPY --from=fonts /build/Fira_Mono_3_2/Fonts/FiraMono_WEB_32/FiraMono-Regular.woff2 /build/static/fonts/fira-mono-regular.woff2
+COPY --from=fonts /build/Fira_Mono_3_2/Fonts/FiraMono_WEB_32/FiraMono-Medium.woff2 /build/static/fonts/fira-mono-medium.woff2
 COPY --from=fonts /build/Fira_Mono_3_2/Fonts/FiraMono_WEB_32/FiraMono-Bold.woff2 /build/static/fonts/fira-mono-bold.woff2
 
 COPY . /build/

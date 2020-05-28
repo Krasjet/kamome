@@ -1,4 +1,5 @@
 **/fonts/*.woff
+**/fonts/*.woff2
 dist
 node_modules
 update.sh

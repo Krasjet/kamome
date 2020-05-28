@@ -39,7 +39,7 @@
   font-style: normal;
   font-weight: normal;
   font-stretch: normal;
-  src: url(fira-mono-regular.woff2);
+  src: url(fira-mono-regular.woff2) format("woff2");
   font-display: swap;
 }
 
@@ -48,7 +48,16 @@
   font-style: italic;
   font-weight: normal;
   font-stretch: normal;
-  src: url(fira-mono-regular.woff2);
+  src: url(fira-mono-medium.woff2) format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "fira mono";
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: normal;
+  src: url(fira-mono-medium.woff2) format("woff2");
   font-display: swap;
 }
 
@@ -57,7 +66,7 @@
   font-style: normal;
   font-weight: bold;
   font-stretch: normal;
-  src: url(fira-mono-bold.woff2);
+  src: url(fira-mono-bold.woff2) format("woff2");
   font-display: swap;
 }
 

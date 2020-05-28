@@ -39,7 +39,8 @@
   font-style: normal;
   font-weight: normal;
   font-stretch: normal;
-  src: url(fira-mono-regular.woff);
+  src: url(fira-mono-regular.woff2) format("woff2"),
+       url(fira-mono-regular.woff) format("woff");
   font-display: swap;
 }
 
@@ -48,7 +49,18 @@
   font-style: italic;
   font-weight: normal;
   font-stretch: normal;
-  src: url(fira-mono-regular.woff);
+  src: url(fira-mono-medium.woff2) format("woff2"),
+       url(fira-mono-medium.woff) format("woff");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "fira mono";
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: normal;
+  src: url(fira-mono-medium.woff2) format("woff2"),
+       url(fira-mono-medium.woff) format("woff");
   font-display: swap;
 }
 
@@ -57,15 +69,7 @@
   font-style: normal;
   font-weight: bold;
   font-stretch: normal;
-  src: url(fira-mono-bold.woff);
-  font-display: swap;
-}
-
-@font-face {
-  font-family: graviola;
-  font-style: normal;
-  font-weight: bold;
-  font-stretch: normal;
-  src: url(graviola-medium.woff);
+  src: url(fira-mono-bold.woff2) format("woff2"),
+       url(fira-mono-bold.woff) format("woff");
   font-display: swap;
 }

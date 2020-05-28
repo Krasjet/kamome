@@ -1,0 +1,3 @@
+[submodule "sesq"]
+	path = sesq
+	url = https://github.com/Krasjet/sesq

@@ -1,35 +1,53 @@
-/* Comment */
-code span.co {
-  color: #999;
-}
-/* Documentation */
-code span.do {
-  color: #999;
-}
-/* DataType */
-code span.dt {
-  font-weight: bold;
-}
-/* String */
-code span.st {
-  color: #689;
+/*
+ * Sesquichromatic syntax highlighting, for karasu.
+ *
+ * This one is the Pandoc version, used when Pygments is not available.
+ */
+:root {
+  --white:  #f4f7f7;
+  --gray06: #909494;
+  --gray05: #7c8080;
+  --gray04: #5c6060;
+  --gray03: #545858;
+  --gray02: #404444;
+  --gray01: #222626;
+  --black:  #081212;
+
+  --lightblue: #74A3B7;
+  --blue:      #507585;
+  --purple:    #818AC2;
+
+  --select: #dce0e0;
+  --error:  #FF6363;
 }
 
-/* begin/end */
-.latex code span.kw {
-  color: #60ac39;
-}
-/* math command */
-/* math var */
-.latex code span.sc,
-.latex code span.ss {
-  color: #5e6977;
-}
-/* command */
-.latex code span.fu {
-  color: #188867;
-}
-/* env */
-.latex code span.ex {
-  color: #689;
-}
+.sourceCode pre ::selection { background-color: var(--select); }
+.sourceCode .al { color: var(--error); } /* Alert */
+.sourceCode .an { color: var(--gray02); font-weight: bold; } /* Annotation */
+.sourceCode .at { color: var(--gray05); font-style: italic; } /* Attribute */
+.sourceCode .bn { color: var(--purple); font-weight: bold; } /* BaseN */
+.sourceCode .bu { color: var(--gray04); font-style: italic; } /* BuiltIn */
+.sourceCode .cf { color: var(--gray01); font-style: italic; } /* ControlFlow */
+.sourceCode .ch { color: var(--blue); } /* Char */
+.sourceCode .cn { color: var(--gray03); font-weight: bold; } /* Constant */
+.sourceCode .co { color: var(--gray06); } /* Comment */
+.sourceCode .cv { color: var(--gray06); font-style: italic; } /* CommentVar */
+.sourceCode .do { color: var(--blue); } /* Documentation */
+.sourceCode .dt { color: var(--black); font-weight: bold; } /* DataType */
+.sourceCode .dv { color: var(--purple); font-weight: bold; } /* DecVal */
+.sourceCode .er { color: var(--error); } /* Error */
+.sourceCode .fl { color: var(--purple); font-weight: bold; } /* Float */
+.sourceCode .fu { color: var(--gray04); font-style: italic; text-decoration: underline; } /* Function */
+.sourceCode .in { color: var(--gray06); font-weight: bold; } /* Information */
+.sourceCode .kw { color: var(--gray01); font-style: italic; } /* Keyword */
+.sourceCode .op { color: var(--black); font-style: italic; } /* Operator */
+.sourceCode .ot { color: var(--gray01) } /* Other */
+.sourceCode .pp { color: var(--gray06); font-style: italic; } /* Preprocessor */
+.sourceCode .sc { color: var(--blue); } /* SpecialChar */
+.sourceCode .ss { color: var(--lightblue); } /* SpecialString */
+.sourceCode .st { color: var(--blue); } /* String */
+.sourceCode .va { color: var(--gray04); font-style: italic; } /* Variable */
+.sourceCode .vs { color: var(--blue); } /* VerbatimString */
+.sourceCode .wa { color: var(--gray06); font-weight: bold; } /* Warning */
+
+.json .fu { color: var(--black); font-style: italic; text-decoration: none; } /* Operator */

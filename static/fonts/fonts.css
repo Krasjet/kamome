@@ -3,7 +3,8 @@
   font-style: normal;
   font-weight: normal;
   font-stretch: normal;
-  src: url(garibaldi-regular.woff);
+  src: url(garibaldi-regular.woff2) format("woff2")
+       url(garibaldi-regular.woff) format("woff");
   font-display: swap;
 }
 
@@ -12,7 +13,8 @@
   font-style: italic;
   font-weight: normal;
   font-stretch: normal;
-  src: url(garibaldi-italic.woff);
+  src: url(garibaldi-italic.woff2) format("woff2")
+       url(garibaldi-italic.woff) format("woff");
   font-display: swap;
 }
 
@@ -21,7 +23,8 @@
   font-style: normal;
   font-weight: bold;
   font-stretch: normal;
-  src: url(garibaldi-medium.woff);
+  src: url(garibaldi-medium.woff2) format("woff2")
+       url(garibaldi-medium.woff) format("woff");
   font-display: swap;
 }
 
@@ -30,7 +33,8 @@
   font-style: italic;
   font-weight: bold;
   font-stretch: normal;
-  src: url(garibaldi-medium-italic.woff);
+  src: url(garibaldi-medium-italic.woff2) format("woff2")
+       url(garibaldi-medium-italic.woff) format("woff");
   font-display: swap;
 }
 

@@ -60,6 +60,7 @@ body {
   hyphens: auto;
   -webkit-hyphens: auto;
   -ms-hyphens: auto;
+  font-feature-settings: "c2sc" 1;
 }
 
 @media all and (max-width: 460px) {
@@ -82,7 +83,7 @@ h3 {
 
 h1 {
   font-weight: normal;
-  font-feature-settings: "smcp";
+  font-feature-settings: "smcp" 1;
   text-transform: lowercase;
   font-size: 1.15rem;
   letter-spacing: 0.06rem;
@@ -315,21 +316,21 @@ header {
   user-select: none;
 }
 
-.smcp,
-.cap {
-  font-feature-settings: "smcp";
-  text-transform: lowercase;
-}
-
 .c2sc {
-  font-feature-settings: "c2sc";
+  font-feature-settings: "c2sc" 1;
 }
 
 .smcp {
+  font-feature-settings: "smcp" 1;
+  text-transform: lowercase;
+  letter-spacing: 0.06rem;
   hyphens: none;
   -webkit-hyphens: none;
   -ms-hyphens: none;
-  letter-spacing: 0.06rem;
+}
+
+.cap {
+  font-feature-settings: "c2sc" 0;
 }
 
 .nowrap {

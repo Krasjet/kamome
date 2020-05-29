@@ -21,6 +21,8 @@ const previewFrame = document.getElementById("preview-frame");
 const renderButton = document.getElementById("menu-render");
 const saveButton = document.getElementById("menu-save");
 const vimCheckbox = document.getElementById("toggle-vim");
+const isMac = CodeMirror.keyMap["default"] == CodeMirror.keyMap.macDefault;
+
 const editor = CodeMirror.fromTextArea(editorTag, {
   // TODO make our own mode
   // mode: "yaml-frontmatter",
@@ -30,7 +32,16 @@ const editor = CodeMirror.fromTextArea(editorTag, {
   extraKeys: {
     Tab: cm => cm.execCommand("indentMore"), // replace tab with spaces
     "Shift-Tab": cm => cm.execCommand("indentLess"),
-    "Ctrl-S": () => renderPreview(previewFrame, editor)
+    "Ctrl-S": () => renderPreview(previewFrame, editor),
+    "Ctrl-C": cm => {
+      // use ctrl-c to copy in insert mode of vim
+      // ref: https://github.com/hackmdio/codimd/commit/f49fc192f64a7fb86baa8eae5717ea87de43c8e5
+      if (!isMac && cm.getOption("keyMap").substr(0, 3) === "vim") {
+        document.execCommand("copy");
+      } else {
+        return CodeMirror.Pass;
+      }
+    }
   }
 });
 

@@ -1,5 +1,17 @@
 // I hate JavaScript
-export { toogleVim, renderPreview, fetchCode, setInitPreview, saveDoc, checkSaved, syncScroll };
+export {
+  // Editor
+  toogleVim,
+  syncScroll,
+  // Preview
+  fetchCode,
+  setInitPreview,
+  // Rendering
+  renderPreview,
+  saveDoc,
+  // Warning
+  checkSaved
+};
 
 import {
   getDocId,
@@ -22,7 +34,7 @@ function toogleVim(checkbox, editor) {
 }
 
 // render the preview frame
-function renderPreview(previewFrame, editor) {
+async function renderPreview(previewFrame, editor) {
   let accessCode = askAccessCode();
   // clicked cancel
   if (accessCode === null) {
@@ -42,52 +54,61 @@ function renderPreview(previewFrame, editor) {
   appendCodeToBody(reqBody, accessCode);
 
   setStatus("rendering");
-  fetch(window.location.origin + "/api/preview", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(reqBody)
-  })
-    .then(res => {
-      if (!res.ok) {
-        clearAccessCode();
-        setStatus("no access");
-        res.text().then(text => setPreviewContent(previewFrame, text));
-      } else {
-        res.text().then(html => {
-          setPreviewContent(previewFrame, html);
-          saveAccessCode(accessCode);
-          window.lastRender = markClean(editor);
-          syncScroll(previewFrame, editor.getScrollInfo());
-          setStatus("done");
-        });
-      }
-    })
-    .catch(e => {
-      setStatus("error");
-      setPreviewContent(previewFrame, "Something went wrong. Try again.\n\n" + e);
-      // prompt again next time
-      clearAccessCode();
+  try {
+    // fetch the preview from server
+    let res = await fetch(window.location.origin + "/api/preview", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(reqBody)
     });
+
+    if (res.ok) {
+      let html = await res.text();
+
+      // 1. update preview
+      setPreviewContent(previewFrame, html);
+
+      // 2. save access code
+      saveAccessCode(accessCode);
+
+      // 3. mark editor as clean
+      window.lastRender = markClean(editor);
+
+      // 4. sync scroll
+      syncScroll(previewFrame, editor.getScrollInfo());
+
+      setStatus("done");
+    } else {
+      // No access
+      setStatus("no access");
+      clearAccessCode();
+      res.text().then(text => setPreviewContent(previewFrame, text));
+    }
+  } catch (e) {
+    setStatus("error");
+    setPreviewContent(previewFrame, "Something went wrong. Try again.\n\n" + e);
+    // prompt again next time
+    clearAccessCode();
+  }
 }
 
 // fetch code from url
-function fetchCode(editor) {
-  fetch(window.location.origin + "/api/get/" + getDocId(), {
-    cache: "no-store" // do not cache result
-  })
-    .then(res => res.json())
-    .then(data => {
-      editor.setValue(data.markdown);
-      // global variable to keep track of the version
-      window.docVersion = data.version;
-      window.lastSave = markClean(editor);
-      setStatus("loaded ver " + data.version);
-    })
-    .catch(e => {
-      editor.setValue("# Error obtaining the document\n\n" + e);
-      window.lastSave = markClean(editor);
-      setStatus("error");
-    });
+async function fetchCode(editor) {
+  try {
+    let json = await fetch(window.location.origin + "/api/get/" + getDocId(), {
+      cache: "no-store" // do not cache result
+    }).then(res => res.json());
+
+    editor.setValue(json.markdown);
+    // global variable to keep track of the version
+    window.docVersion = json.version;
+    window.lastSave = markClean(editor);
+    setStatus("loaded ver " + json.version);
+  } catch (e) {
+    editor.setValue("# Error obtaining the document\n\n" + e);
+    window.lastSave = markClean(editor);
+    setStatus("error");
+  }
 }
 
 // write to preview frame
@@ -101,23 +122,21 @@ function setPreviewContent(previewFrame, content) {
 }
 
 // fetch the initial preview
-function setInitPreview(previewFrame) {
-  fetch(window.location.origin + "/view/" + getDocId(), {
-    cache: "no-store" // do not cache result
-  })
-    .then(res => res.text())
-    .then(html => {
-      setPreviewContent(previewFrame, html);
-    })
-    .catch(e => {
-      setPreviewContent(previewFrame, "Error retreiving the preview\n\n" + e);
-      setStatus("error");
-    });
+async function setInitPreview(previewFrame) {
+  try {
+    let html = await fetch(window.location.origin + "/view/" + getDocId(), {
+      cache: "no-store" // do not cache result
+    }).then(res => res.text());
+    setPreviewContent(previewFrame, html);
+  } catch (e) {
+    setPreviewContent(previewFrame, "Error retreiving the preview\n\n" + e);
+    setStatus("error");
+  }
   // previewFrame.src = window.location.origin + "/view/" + getDocId();
 }
 
 // save the document the preview frame
-function saveDoc(previewFrame, editor) {
+async function saveDoc(previewFrame, editor) {
   let accessCode = askAccessCode();
   // clicked cancel
   if (accessCode === null) {
@@ -137,39 +156,54 @@ function saveDoc(previewFrame, editor) {
   appendCodeToBody(reqBody, accessCode);
 
   setStatus("saving");
-  fetch(window.location.origin + "/api/save", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(reqBody)
-  })
-    .then(res => {
-      // no access
-      if (res.statusCode == 403) {
-        setStatus("no access");
-        clearAccessCode();
-      }
-      if (res.statusCode == 409) {
-        setStatus("conflict");
-      }
-      if (!res.ok) {
-        res.text().then(text => setPreviewContent(previewFrame, text));
-      } else {
-        res.json().then(data => {
-          setPreviewContent(previewFrame, data.html);
-          window.docVersion = data.newVersion;
-          saveAccessCode(accessCode);
-          window.lastSave = markClean(editor);
-          syncScroll(previewFrame, editor.getScrollInfo());
-          setStatus("saved ver" + data.newVersion);
-        });
-      }
-    })
-    .catch(e => {
-      setPreviewContent(previewFrame, "Something went wrong. Try again.\n\n" + e);
-      setStatus("error");
-      // prompt again next time
-      clearAccessCode();
+  try {
+    // send markdown to server for saving
+    let res = await fetch(window.location.origin + "/api/save", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(reqBody)
     });
+
+    // error
+    if (res.statusCode == 403) {
+      setStatus("no access");
+      clearAccessCode();
+      return;
+    } else if (res.statusCode == 409) {
+      setStatus("conflict");
+      return;
+    }
+
+    if (res.ok) {
+      let data = await res.json();
+
+      // 1. update preview
+      setPreviewContent(previewFrame, data.html);
+      window.docVersion = data.newVersion;
+
+      // 2. now the access code is correct, also save that
+      saveAccessCode(accessCode);
+
+      // 3. set editor state to clean
+      window.lastSave = markClean(editor);
+
+      // 4. sync scroll
+      syncScroll(previewFrame, editor.getScrollInfo());
+
+      // 5. update status
+      setStatus("saved ver" + data.newVersion);
+    } else {
+      setStatus("error");
+      // display error message returned from server
+      let text = await res.text();
+      setPreviewContent(previewFrame, text);
+    }
+  } catch (e) {
+    setStatus("error");
+    setPreviewContent(previewFrame, "Something went wrong. Try again.\n\n" + e);
+    // prompt again next time
+    clearAccessCode();
+  }
 }
 
 // check saved status, warn before unload window
@@ -178,7 +212,7 @@ function checkSaved(e, editor) {
   sessionStorage["docBackup"] = editor.getValue();
   if (!isCleanSince(editor, window.lastSave)) {
     e.preventDefault();
-    let msg = "Document not saved.";
+    const msg = "Document not saved.";
     e.returnValue = msg;
     return msg;
   }

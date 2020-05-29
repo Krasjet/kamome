@@ -7,5 +7,6 @@
         "targets": "last 2 versions, > 0.20%, not dead"
       }
     ]
-  ]
+  ],
+  "plugins": ["@babel/plugin-transform-runtime"]
 }

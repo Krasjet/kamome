@@ -63,4 +63,5 @@ renderButton.addEventListener("click", () =>
 saveButton.addEventListener("click", () => saveDoc(previewFrame, editor, editor.getScrollInfo()));
 editor.on("scroll", () => syncScroll(previewFrame, editor.getScrollInfo()));
 
+// warn unsaved changed before unload
 window.addEventListener("beforeunload", e => checkSaved(e, editor));

@@ -1,30 +1,24 @@
 export {
+  // General
   getDocId,
+  setStatus,
+  // Editor
   isCleanSince,
   markClean,
+  // Access code
   askAccessCode,
   saveAccessCode,
   clearAccessCode,
-  appendCodeToBody,
-  setStatus
+  appendCodeToBody
 };
 
+// -- Some utils used by every function
 // Fetch doc id from path
 function getDocId() {
   let tokens = window.location.pathname.split("/");
   tokens.indexOf("edit");
 
   return tokens[tokens.indexOf("edit") + 1]; // i.e. the token after "edit"
-}
-
-// Check if nothing has changed since last render
-function isCleanSince(editor, gen) {
-  return gen !== undefined && editor.isClean(gen);
-}
-
-// Mark clean
-function markClean(editor) {
-  return editor.changeGeneration(true);
 }
 
 // Set the status bar
@@ -34,8 +28,21 @@ function setStatus(message) {
     status.innerText = ":" + message + ":";
   }
 }
+// -- <end
 
-// Access code related
+// -- Editor related
+// Check if nothing has changed since last render
+function isCleanSince(editor, gen) {
+  return gen !== undefined && editor.isClean(gen);
+}
+
+// Mark clean
+function markClean(editor) {
+  return editor.changeGeneration(true);
+}
+// -- <end
+
+// -- Access code related
 // Get access code from user
 function askAccessCode() {
   // only ask if storage is empty
@@ -61,3 +68,4 @@ function appendCodeToBody(reqBody, accessCode) {
   // only send the access code if it's not empty
   if (accessCode !== "") reqBody.accessCode = accessCode;
 }
+// -- <end

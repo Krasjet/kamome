@@ -316,8 +316,9 @@ header {
   user-select: none;
 }
 
-.c2sc {
-  font-feature-settings: "c2sc" 1;
+.cap,
+.header-section-number {
+  font-feature-settings: "c2sc" 0;
 }
 
 .smcp {

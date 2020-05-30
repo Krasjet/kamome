@@ -35,6 +35,10 @@ html {
   word-break: break-word;
 }
 
+main {
+  display: block;
+}
+
 a {
   -ms-touch-action: manipulation;
   touch-action: manipulation;
@@ -49,38 +53,8 @@ sup {
   left: 0.05em;
 }
 
-iframe {
-  border-style: none;
-}
-
-button,
-input,
-select {
-  margin: 0;
-}
-
-button {
-  overflow: visible;
-  text-transform: none;
-}
-
-button,
-[type="button"],
-[type="reset"],
-[type="submit"] {
-  -webkit-appearance: button;
-}
-
-textarea {
-  margin: 0;
-  overflow: auto;
-}
-
-[type="checkbox"],
-[type="radio"] {
-  padding: 0;
-}
-
-[type="checkbox"] {
+[type=checkbox] {
   vertical-align: middle;
 }
+
+/*# sourceMappingURL=reset.css.map */

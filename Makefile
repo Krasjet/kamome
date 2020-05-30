@@ -1,9 +1,12 @@
 .PHONY: all build
 
-build: all
+build: css
 	yarn build
 
-all: static/styles/doc/main.css static/styles/doc/reset.css static/styles/doc/syntax.css
+build-docker: css
+	yarn build-docker
+
+css: static/styles/doc/main.css static/styles/doc/reset.css static/styles/doc/syntax.css
 
 static/styles/doc/main.css: hane/main.scss
 	$(MAKE) -C hane

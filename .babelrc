@@ -4,7 +4,7 @@
       "@babel/preset-env",
       {
         "modules": false,
-        "targets": "last 2 versions, > 0.20%, not dead"
+        "targets": "last 2 versions, > 0.25%, not IE 11, not IE_Mob 11, not dead"
       }
     ]
   ],

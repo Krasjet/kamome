@@ -42,7 +42,7 @@ RUN if [ "$USE_ALT_FONTS" = "true" ]; \
     else rm /build/static/fonts/fonts-oss.css /build/static/fonts/*.woff2; \
     fi
 
-RUN yarn build
+RUN make build
 
 # --- kamome ---
 FROM nginx:latest

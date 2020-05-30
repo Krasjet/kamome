@@ -1,3 +1,6 @@
 [submodule "sesq"]
 	path = sesq
 	url = https://github.com/Krasjet/sesq
+[submodule "kamome.hane"]
+	path = hane
+	url = https://github.com/Krasjet/kamome.hane

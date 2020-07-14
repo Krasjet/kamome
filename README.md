@@ -1,3 +1,7 @@
-# kamome
+kamome
+======
 
-kamome is the front-end components for [karasu](https://github.com/Krasjet/karasu). For detailed introduction, see [**here**](https://krasjet.com/voice/karasu/)
+kamome is the front-end components for [karasu][karasu]. For detailed introduction, see [**here**][home].
+
+[karasu]: https://github.com/Krasjet/karasu
+[home]: https://krasjet.com/voice/karasu/

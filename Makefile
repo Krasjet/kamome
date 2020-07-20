@@ -1,20 +1,23 @@
-.PHONY: all build
+.PHONY: all build build-docker css
 
-build: css
+DOC = static/styles/doc
+
+build: css node_modules
 	yarn build
 
 build-docker: css
 	yarn build-docker
 
-css: static/styles/doc/main.css static/styles/doc/reset.css static/styles/doc/syntax.css
+css: $(DOC)/main.css $(DOC)/reset.css $(DOC)/syntax.css
 
-static/styles/doc/main.css: hane/main.scss
+$(DOC)/syntax.css: sesq/pandoc.css
+	command cp $< $@
+
+$(DOC)/%.css: hane/%.css
+	command cp $< $@
+
+hane/%.css: hane/%.scss
 	$(MAKE) -C hane
-	/bin/cp hane/main.css static/styles/doc/main.css
 
-static/styles/doc/reset.css: hane/reset.scss
-	$(MAKE) -C hane
-	/bin/cp hane/reset.css static/styles/doc/reset.css
-
-static/styles/doc/syntax.css: sesq/pandoc.css
-	/bin/cp sesq/pandoc.css static/styles/doc/syntax.css
+node_modules:
+	yarn install

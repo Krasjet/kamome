@@ -35,7 +35,7 @@ http {
     proxy_intercept_errors on;
 
     location / {
-      try_files $uri @karasu;
+      try_files $uri $uri/ @karasu;
     }
 
     location /view/ {

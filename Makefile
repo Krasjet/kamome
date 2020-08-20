@@ -11,10 +11,10 @@ build-docker: css
 css: $(DOC)/main.css $(DOC)/reset.css $(DOC)/syntax.css
 
 $(DOC)/syntax.css: sesq/pandoc.css
-	command cp $< $@
+	cp $< $@
 
 $(DOC)/%.css: hane/%.css
-	command cp $< $@
+	cp $< $@
 
 hane/%.css: hane/%.scss
 	$(MAKE) -C hane

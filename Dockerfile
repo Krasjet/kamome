@@ -24,6 +24,7 @@ WORKDIR /build
 # dependencies
 COPY package.json yarn.lock /build/
 RUN yarn install --ignore-optional --non-interactive
+RUN yarn global add sass
 
 # copy free fonts
 COPY --from=fonts /build/alegreya/Alegreya-Regular.woff2 /build/static/fonts/alegreya-regular.woff2

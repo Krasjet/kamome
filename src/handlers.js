@@ -1,4 +1,3 @@
-// I hate JavaScript
 export {
   // Editor
   toogleVim,
